@@ -1,5 +1,5 @@
 pipeline {
-    agent {openjdk11} 
+    agent {label 'openjdk11'} 
 
     stages {
         stage('Build') {
