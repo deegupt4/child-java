@@ -2,20 +2,27 @@ pipeline {
     agent {label 'openjdk11'} 
 
     stages {
-        stage('Build') {
+        stage('clean') {
             
             steps {
                 container('jdk11') {
-                echo 'Building..'
+               sh 'mvn clean'
             }
             }
         }
-        stage('Test') {
+        stage('compile') {
             steps {
                 container('jdk11') {
-                    echo 'Testing..'}
+                    sh 'mvn compiler:compile'
+                }
             }
         }
-       
+        stage('package') {
+            steps {
+                container('jdk11') {
+                    sh 'mvn package'
+                }
+            }
+        }
     }
 }
