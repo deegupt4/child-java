@@ -1,21 +1,21 @@
 pipeline {
-    agent any
+    agent {openjdk11} 
 
     stages {
         stage('Build') {
+            
             steps {
+                container('jdk11') {
                 echo 'Building..'
+            }
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                container('jdk11') {
+                    echo 'Testing..'}
             }
         }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
+       
     }
 }
